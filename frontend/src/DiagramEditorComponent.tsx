@@ -1,14 +1,16 @@
 import React from 'react';
-import {Block, DiagramData} from "./diagramData";
+import { Block, DiagramData } from "./diagramData";
+
+import './index.scss';
 
 const DiagramEditorComponent = ({ data, onChange }: { data: DiagramData; onChange: (newData: DiagramData) => void }) => {
   const handleAddBlock = () => {
-    // Логика создания нового блока
+    // Logic for creating a new block
     const newBlock: Block = {
       id: "some-id",
       x: 0,
       y: 0,
-      // Другие свойства блока
+      // Other block properties
     };
     const newData: DiagramData = {
       ...data,
@@ -19,9 +21,9 @@ const DiagramEditorComponent = ({ data, onChange }: { data: DiagramData; onChang
 
   return (
     <div>
-      {/* Кнопка для добавления блока */}
-      <button onClick={handleAddBlock}>Добавить блок</button>
-      {/* Остальная разметка и логика редактора */}
+      {/* Button for adding a block */}
+      <button className="managing-button" onClick={handleAddBlock}>Add block</button>
+      {/* Other markup and editor logic */}
     </div>
   );
 };

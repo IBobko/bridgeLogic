@@ -14,6 +14,7 @@ For the frontend part of the project, we used the following technologies:
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - Hypertext Markup Language.
 - [SASS](https://sass-lang.com/) - Syntactically Awesome Style Sheets.
 - [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework.
 
 For more information about the frontend part of the project, please refer to [frontend/README.md](frontend/README.md).
 
