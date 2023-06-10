@@ -1,10 +1,12 @@
-import {Component, createEffect, createSignal, onCleanup} from 'solid-js';
+import {Component, createEffect, createSignal} from 'solid-js';
 import '../styles/main.scss';
 import {select, Selection} from "d3-selection";
 import {D3DragEvent, drag} from "d3-drag";
+import {Block} from "../data/diagramData";
 
 interface DiagramProps {
     count: number;
+    blocks: Block[];
 }
 
 const Diagram: Component<DiagramProps> = (props) => {
@@ -16,6 +18,8 @@ const Diagram: Component<DiagramProps> = (props) => {
             newDivs.push(`Див ${i + 1}`);
         }
         setDivs(newDivs);
+
+        console.log(props.blocks)
 
         const square: any | Selection<SVGGElement, null, null, undefined> = select('g');
         const dragHandler = drag<Element, null>()
