@@ -10,9 +10,8 @@ This project combines a frontend and backend application developed using various
 
 For the frontend part of the project, we used the following technologies:
 
-- [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+- [SolidJS](https://www.solidjs.com/) - A declarative JavaScript library for building user interfaces.
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - Hypertext Markup Language.
-- [SASS](https://sass-lang.com/) - Syntactically Awesome Style Sheets.
 - [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript.
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework.
 
