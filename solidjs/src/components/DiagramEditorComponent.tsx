@@ -9,7 +9,7 @@ interface DiagramEditorProps {
 const DiagramEditorComponent: Component<DiagramEditorProps> = (props) => {
     const {incrementCount} = props;
     return (
-        <div>
+        <div id={"button-container"}>
             {/* Button for adding a block */}
             <button class="managing-button" onClick={incrementCount}>Add block</button>
             {/* Other markup and editor logic */}
