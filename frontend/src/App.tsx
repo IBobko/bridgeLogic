@@ -1,79 +1,39 @@
-import React from 'react';
-import 'reflect-metadata';
-import { DiagramData } from "./diagramData";
-import BlockDiagram from "./BlockDiagram";
-import DiagramEditorComponent from "./DiagramEditorComponent";
+import type {Component} from 'solid-js';
+import DiagramContext from "./components/DiagramContext"
 
-type DiagramContextType = {
-    diagramData: DiagramData;
-    updateDiagramData: (data: DiagramData) => void;
-};
+import Diagram from './components/Diagram';
+import DiagramEditorComponent from "./components/DiagramEditorComponent";
+import {createSignal} from "solid-js";
 
-const defaultValue: DiagramContextType = {
-    diagramData: {
-        blocks: [],
-        connections: [],
-    },
-    updateDiagramData: () => {},
-};
+const App: Component = () => {
 
-const DiagramContext = React.createContext<DiagramContextType>(defaultValue);
 
-// Component that displays the block diagram
-const Diagram = () => {
-    const { diagramData, updateDiagramData } = React.useContext(DiagramContext);
+    function handleClick() {
+        console.log("Кнопка нажата!");
+    }
 
-    // Handler for diagram changes
-    const handleDiagramChange = (newData: DiagramData) => {
-        updateDiagramData(newData);
+    function handleMouseOver() {
+        console.log("Курсор наведен на кнопку!");
+    }
+
+    const buttonHandlers = {
+        handleClick, handleMouseOver,
     };
 
-    return (
-        <svg className={"editable-field"}>
-            {/* Display the block diagram using diagramData */}
-            <BlockDiagram data={diagramData} onChange={handleDiagramChange} />
-        </svg>
-    );
-};
 
-// Component that edits the block diagram
-const DiagramEditor = () => {
-    const { diagramData, updateDiagramData } = React.useContext(DiagramContext);
+    const [count, setCount] = createSignal(0);
 
-    // Handler for diagram changes in the editor
-    const handleEditorChange = (newData: DiagramData) => {
-        // Only update the diagram data in the context
-        updateDiagramData(newData);
-    };
 
-    return (
-        <div id={"button-container"}>
-            {/* Block diagram editor using diagramData */}
-            <DiagramEditorComponent data={diagramData} onChange={handleEditorChange} />
-        </div>
-    );
-};
+    function incrementCount() {
+        setCount(count() + 1);
+    }
 
-const initialDiagramData: DiagramData = {
-    blocks: [], // Initial blocks
-    connections: [], // Initial connections
-};
 
-// Container component that provides the context
-const App = () => {
-    const [diagramData, setDiagramData] = React.useState(initialDiagramData);
-
-    // Function to update the diagram data
-    const updateDiagramData = (newData: DiagramData) => {
-        setDiagramData(newData);
-    };
-
-    return (
-        <DiagramContext.Provider value={{ diagramData: diagramData, updateDiagramData: updateDiagramData }}>
-            {/* Render components that need access to the diagram data */}
-            <DiagramEditor />
-            <Diagram />
+    return (<DiagramContext.Provider value={buttonHandlers}>
+            <DiagramEditorComponent count={count()} incrementCount={incrementCount}/>
+            <Diagram count={count()}/>
         </DiagramContext.Provider>
+
     );
 };
 

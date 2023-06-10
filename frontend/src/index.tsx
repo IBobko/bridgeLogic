@@ -1,23 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
+/* @refresh reload */
+import { render } from 'solid-js/web';
+
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import container from './dependencies';
-import {Provider} from 'inversify-react';
 
-import 'reflect-metadata';
+const root = document.getElementById('root');
 
-const rootElement = document.getElementById('root');
-
-if (rootElement) {
-    ReactDOM.render(<React.StrictMode>
-        <Provider container={container}>
-            <App/>
-        </Provider>
-    </React.StrictMode>, rootElement);
-
-    reportWebVitals(console.log);
-} else {
-    console.error("Root element 'root' not found in the document.");
+if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
+  throw new Error(
+    'Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got mispelled?',
+  );
 }
+
+render(() => <App />, root!);
