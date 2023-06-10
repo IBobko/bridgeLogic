@@ -23,7 +23,7 @@ const App: Component = () => {
 
     const [count, setCount] = createSignal(0);
 
-    // Определение функции изменения состояния
+
     function incrementCount() {
         setCount(count() + 1);
     }

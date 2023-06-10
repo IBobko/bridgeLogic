@@ -1,5 +1,6 @@
 // DiagramEditorComponent.js
 import {Component, useContext} from 'solid-js';
+
 interface DiagramEditorProps {
     count: number;
     incrementCount: () => void;
