@@ -12,7 +12,6 @@ const RectGroup: Component<RectGroupProps> = (props) => {
     let eY = 0;
 
     function handleMouseDown(event: MouseEvent) {
-        console.log('Mouse down event:', event);
         setIsDragging(true);
         eX = event.offsetX;
         eY = event.offsetY;
