@@ -3,17 +3,8 @@ import {v4 as uuidv4} from 'uuid';
 import {Component, useContext} from 'solid-js';
 import Ctx from "./DiagramContext";
 
-interface DiagramEditorProps {
-    count: number;
-    incrementCount: () => void;
-}
-
-let i = 0;
-
-const DiagramEditorComponent: Component<DiagramEditorProps> = (props) => {
+const DiagramEditorComponent: Component = (props) => {
     const [getBlocks, setBlocks] = useContext(Ctx);
-    const {incrementCount} = props;
-
 
     function addBlockClick() {
         const blocks = [...getBlocks()];
@@ -24,7 +15,6 @@ const DiagramEditorComponent: Component<DiagramEditorProps> = (props) => {
             y: 20
         });
         setBlocks(blocks);
-        incrementCount();
     }
 
     return (
