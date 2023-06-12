@@ -1,6 +1,6 @@
 import type {Component} from 'solid-js';
 import {createSignal} from "solid-js";
-import DiagramContext from "./components/DiagramContext"
+import Ctx from "./components/DiagramContext"
 
 import Diagram from './components/Diagram';
 import DiagramEditorComponent from "./components/DiagramEditorComponent";
@@ -8,7 +8,7 @@ import DataService from "./services/DataService";
 import {Block} from "./data/diagramData";
 
 const App: Component = () => {
-
+    const [getBlocks, setBlocks] = createSignal([]);
 
     function handleClick() {
         console.log("Кнопка нажата!");
@@ -29,20 +29,17 @@ const App: Component = () => {
     function incrementCount() {
         setCount(count() + 1);
         const block: Block = {
-            id: "1",
-            x: 10,
-            y: 20,
+            id: "1", x: 10, y: 20,
         };
         DataService.addBlock(block);
     }
 
 
-    return (<DiagramContext.Provider value={buttonHandlers}>
-            <DiagramEditorComponent count={count()} incrementCount={incrementCount}/>
-            <Diagram count={count()} blocks={DataService.fetchData()}/>
-        </DiagramContext.Provider>
-
-    );
+    return (<Ctx.Provider value={[getBlocks, setBlocks]}>
+        <DiagramEditorComponent count={count()}
+                                incrementCount={incrementCount}/>
+        <Diagram count={count()} blocks={DataService.fetchData()}/>
+    </Ctx.Provider>);
 };
 
 export default App;
