@@ -25,28 +25,32 @@ const RectGroup: Component<RectGroupProps> = (props) => {
         gRef.addEventListener("mouseleave", handleMouseUp);
     });
 
-    function handleMouseMove(event: MouseEvent) {
-        console.log('Mouse move event:', event);
-        if (isDragging()) {
-            let currentX = 0;
-            let currentY = 0;
-
-            const currentTransform = gRef.getAttribute("transform");
-            if (currentTransform) {
-                const currentTranslate = currentTransform.match(/translate\(([^,]+),([^)]+)\)/);
-                if (currentTranslate) {
+    function getTranslate() {
+        let currentX = 0;
+        let currentY = 0;
+        const currentTransform = gRef.getAttribute("transform");
+        if (currentTransform) {
+            const currentTranslate = currentTransform.match(/translate\(([^,]+),([^)]+)\)/);
+            if (currentTranslate) {
+                try {
                     currentX = parseInt(currentTranslate[1], 10);
                     currentY = parseInt(currentTranslate[2], 10);
+                } catch (e) {
+                    console.log(e);
                 }
             }
+        }
+        return {x: currentX, y: currentY}
+    }
 
-            currentX += event.offsetX - eX;
+    function handleMouseMove(event: MouseEvent) {
+        if (isDragging()) {
+            let {x, y} = getTranslate();
+            x += event.offsetX - eX;
             eX = event.offsetX;
-
-            currentY += event.offsetY - eY;
+            y += event.offsetY - eY;
             eY = event.offsetY;
-
-            let newTransform = "translate(" + currentX + ", " + currentY + ")";
+            let newTransform = "translate(" + x + ", " + y + ")";
             gRef.setAttribute("transform", newTransform);
         }
     }
