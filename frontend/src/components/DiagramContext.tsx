@@ -1,9 +1,12 @@
-// DiagramContext.js
-import { createContext } from 'solid-js';
+import {createContext} from 'solid-js';
 
-const DiagramContext = createContext({
-  handleClick: () => {},
-  handleMouseOver: () => {},
-});
+import {Block} from "../data/diagramData";
+
+
+export type DiagramContextValue = [() => Block[], (value: Block[]) => void];
+const defaultValue: DiagramContextValue = [() => [], () => {
+}];
+
+const DiagramContext = createContext<DiagramContextValue>(defaultValue);
 
 export default DiagramContext;
