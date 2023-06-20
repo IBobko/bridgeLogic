@@ -19,9 +19,12 @@ const DiagramEditorComponent: Component = (props) => {
 
     return (
         <div id={"button-container"}>
-            {/* Button for adding a block */}
-            <button class="managing-button" onClick={addBlockClick}>Add block</button>
-            {/* Other markup and editor logic */}
+            <button class="tool-button" onClick={addBlockClick}>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 2h16v16H2V2zm2 2v12h12V4H4z"/>
+                </svg>
+                <span class="tooltip">Add square block</span>
+            </button>
         </div>
     );
 };
