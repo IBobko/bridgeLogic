@@ -1,11 +1,15 @@
 /*
-  Main Styles
+  Global Styles
 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Main Styles
+*/
 
+// Reset styles
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,6 +24,7 @@ code {
   monospace;
 }
 
+// Root container
 #root {
   height: calc(100vh - 20px);
   display: flex;
@@ -29,15 +34,16 @@ code {
   overflow: auto;
 }
 
+// Button container
 #button-container {
   margin: 10px;
+
+  button {
+    margin-bottom: 10px;
+  }
 }
 
-#button-container button {
-  margin-bottom: 10px;
-}
-
-
+// Editable SVG field
 svg.editable-field {
   border: 1px solid #ccc;
   width: 100%;
@@ -46,6 +52,57 @@ svg.editable-field {
   box-sizing: border-box;
 }
 
+// Custom classes
 .managing-button {
   @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background-color: lightgray;
+  padding: 10px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+}
+
+.tool-column {
+  width: 100px;
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+.column {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+.relative {
+  &:hover {
+    .tooltip {
+      opacity: 1;
+    }
+  }
+}
+
+.tooltip {
+  @apply opacity-0 bg-gray-800 text-white text-xs rounded p-1 absolute top-0 left-full ml-2 pointer-events-none transition-opacity duration-300;
+}
+
+.tool-button {
+  @apply bg-gray-200 rounded-md p-2 focus:outline-none relative;
+  /* Additional styles for the general button class */
+}
+
+.tool-button:hover {
+  /* Styles applied when hovering over the button */
+  background-color: gray;
 }
